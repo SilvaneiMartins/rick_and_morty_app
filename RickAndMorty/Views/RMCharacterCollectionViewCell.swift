@@ -67,10 +67,6 @@ class RMCharacterCollectionViewCell: UICollectionViewCell {
             imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
         ])
         
-        imageView.backgroundColor = .systemGreen
-        nameLabel.backgroundColor = .red
-        statusLabel.backgroundColor = .orange
-        
         /*
         | Image  |
         | Name   |

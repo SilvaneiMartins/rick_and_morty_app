@@ -14,8 +14,7 @@ final class RMCharacterListViewModel: NSObject {
         RMService.shared.execute(.listCharactersRequests, expecting: RMGetAllCharactersResponse.self) { result in
             switch result {
             case .success(let model):
-                print("Total: " + String(model.info.count))
-                print("Total Paginas: " + String(model.results.count))
+                print("Example image: " + String(model.results.first?.image ?? "Não tem image"))
             case .failure(let error):
                 print(String(describing: error))
             }
@@ -32,7 +31,13 @@ extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterCollectionViewCell.cellIndentifier, for: indexPath) as? RMCharacterCollectionViewCell else {
             fatalError("Unsupported Cell")
         }
-        let viewModel = RMCharacterCollectionViewCellViewModel(characterName: "Afraz", characterStatus: .alive, characterImageUrl: nil)
+        let viewModel = RMCharacterCollectionViewCellViewModel(
+            characterName: "Afraz",
+            characterStatus: .alive,
+            characterImageUrl: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")
+        )
+        
+        cell.configure(width: viewModel)
         return cell
     }
     
