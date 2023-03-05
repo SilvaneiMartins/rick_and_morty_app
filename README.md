@@ -9,6 +9,11 @@
 	🚧  APLICAÇÃO MOBILE PARA IPHONE + LINGUAGEM SWFIT...  🚧
 </h3>
 
+<h1 align="center">
+    <a href="https://imgur.com/mII5qAm"><img src="https://i.imgur.com/mII5qAm.png" title="source: imgur.com" /></a>
+    <br />
+</h1>
+
 🚀 A aplicação tem por seu objectivo trazer informa da API rickandmortyapi.com/api no aplicativo construído na linguagem Swift para os aparelhos Iphone.
 
 
