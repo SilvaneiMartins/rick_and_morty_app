@@ -21,7 +21,7 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var characters: [RMCharacter] = [] {
         didSet {
-            for character in characters {
+            for character in characters where !cellViewModels.contains(where: {$0.characterName == character.name }) {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,
@@ -83,17 +83,16 @@ final class RMCharacterListViewViewModel: NSObject {
                 
                 let originalCount = strongSelf.characters.count
                 let newCount = moreResults.count
-                let total = originalCount+newCount
+                let total = originalCount + newCount
                 let startingIndex = total - newCount
-                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
-                    return IndexPath(row: $0, section: 0)
-                                })
-                print(indexPathsToAdd)
+                let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex + newCount)).compactMap({
+                        return IndexPath(row: $0, section: 0)
+                    })
+            
                 strongSelf.characters.append(contentsOf: moreResults)
-                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(
-                        with: []
+                        with: indexPathsToAdd
                     )
                     strongSelf.isLoadingMoreCharacters = false
                 }
@@ -165,7 +164,7 @@ extension RMCharacterListViewViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard shouldShowLoadMoreIndicator,
             !isLoadingMoreCharacters,
-            cellViewModels.isEmpty,
+            !cellViewModels.isEmpty,
             let nextUrlString = apiInfo?.next,
             let url = URL(string: nextUrlString) else {
             return
