@@ -21,13 +21,15 @@ final class RMCharacterListViewViewModel: NSObject {
     
     private var characters: [RMCharacter] = [] {
         didSet {
-            for character in characters where !cellViewModels.contains(where: {$0.characterName == character.name }) {
+            for character in characters {
                 let viewModel = RMCharacterCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,
                     characterImageUrl: URL(string: character.image)
                 )
-                cellViewModels.append(viewModel)
+                if !cellViewModels.contains(viewModel) {
+                    cellViewModels.append(viewModel)
+                }
             }
         }
     }
@@ -90,11 +92,12 @@ final class RMCharacterListViewViewModel: NSObject {
                     })
             
                 strongSelf.characters.append(contentsOf: moreResults)
+                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(
                         with: indexPathsToAdd
                     )
-                    strongSelf.isLoadingMoreCharacters = false
+                    //strongSelf.isLoadingMoreCharacters = false
                 }
             case .failure(let failure):
                 print(String(describing: failure))
