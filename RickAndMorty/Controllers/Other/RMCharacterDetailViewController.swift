@@ -11,6 +11,10 @@ import UIKit
 final class RMCharacterDetailViewController: UIViewController {
     private let viewModel: RMCharacterDetailViewViewModel
     
+    private let detailsView =   RMCharacterDetailView()
+    
+    // MARK: - Inicio
+    
     init(viewModel:  RMCharacterDetailViewViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -26,5 +30,22 @@ final class RMCharacterDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = viewModel.title
+        view.addSubview(detailsView)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+        addConstraints()
+    }
+    
+    @objc
+    private func didTapShare() {
+        
+    }
+    
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailsView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            detailsView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            detailsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
