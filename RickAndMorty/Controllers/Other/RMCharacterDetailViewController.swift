@@ -11,12 +11,13 @@ import UIKit
 final class RMCharacterDetailViewController: UIViewController {
     private let viewModel: RMCharacterDetailViewViewModel
     
-    private let detailsView =   RMCharacterDetailView()
+    private let detailsView: RMCharacterDetailView
     
     // MARK: - Inicio
     
     init(viewModel:  RMCharacterDetailViewViewModel) {
         self.viewModel = viewModel
+        self.detailsView = RMCharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +34,9 @@ final class RMCharacterDetailViewController: UIViewController {
         view.addSubview(detailsView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
         addConstraints()
+        
+        detailsView.collectionView?.delegate = self
+        detailsView.collectionView?.dataSource = self
     }
     
     @objc
@@ -47,5 +51,31 @@ final class RMCharacterDetailViewController: UIViewController {
             detailsView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             detailsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+
+// MARK: - CollectionView
+
+extension RMCharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        if indexPath.section == 0 {
+            cell.backgroundColor = .systemPink
+        } else if indexPath.section == 0 {
+            cell.backgroundColor = .systemBlue
+        } else {
+            cell.backgroundColor = .systemGreen
+        }
+        return cell
     }
 }
