@@ -1,5 +1,5 @@
 <h1 align="center">
-   APP SWFIT RICK AND MORTY
+   APP SWIFT AND SWIFTUI - RICK AND MORTY
     <br />
    Versão: 1.0
 </h1>
