@@ -5,8 +5,7 @@
 </h1>
 
 <h3 align="center">
-
-	🚧  APLICAÇÃO MOBILE PARA IPHONE + LINGUAGEM SWFIT...  🚧
+	🚧  APLICAÇÃO MOBILE SWFIT...  🚧
 </h3>
 
 <h1 align="center">
