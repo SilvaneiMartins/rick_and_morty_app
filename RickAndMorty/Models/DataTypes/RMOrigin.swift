@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Origin of the character location
 struct RMOrigin: Codable {
     let name: String
     let url: String
