@@ -35,6 +35,6 @@ O projeto é decorrência de estudos e está em andamento.
     </sub>
 </a>
      <a href="https://github.com/SilvaneiMartins" title="Silvanei martins" >
-    🚀
  </a>
-Feito com ❤️ por Silvanei Martins
+<br />
+🚀 Feito com ❤️ por Silvanei Martins
