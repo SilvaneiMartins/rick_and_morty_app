@@ -21,14 +21,14 @@ final class RMCharacterPhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
-        setUpConstrainsts()
+        setUpConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
     
-    private func setUpConstrainsts() {
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
